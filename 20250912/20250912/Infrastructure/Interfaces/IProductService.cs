@@ -10,5 +10,5 @@ public interface IProductService
     Product? GetProductById(string id);
     Product? GetProductByName(string name);
     Product? GetProductByArticleNumber (string articleNumber);
-
+    void PopulateProductList(IEnumerable<Product> products);
 }

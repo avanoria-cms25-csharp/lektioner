@@ -12,7 +12,7 @@ public class ProductService : IProductService
         if (newProduct == null)
             return false;
 
-        if (!string.IsNullOrWhiteSpace(newProduct.Name))
+        if (string.IsNullOrWhiteSpace(newProduct.Name))
             return false;
 
         Product product = new()
@@ -48,5 +48,11 @@ public class ProductService : IProductService
     public IEnumerable<Product> GetProductList()
     {
         return _productList;
+    }
+
+
+    public void PopulateProductList(IEnumerable<Product> products)
+    {
+        _productList = products.ToList();
     }
 }

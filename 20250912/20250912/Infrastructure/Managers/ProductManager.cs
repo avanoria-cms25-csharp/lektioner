@@ -8,8 +8,13 @@ public class ProductManager(IProductService productService, IFileService fileSer
     private readonly IProductService _productService = productService;
     private readonly IFileService _fileService = fileService;
 
+
     public IEnumerable<Product> GetAllProducts()
     {
+        var data = _fileService.GetContentFromFile<IEnumerable<Product>>();
+        if (data != null)
+            _productService.PopulateProductList(data);
+
         var productList = _productService.GetProductList();
         return productList;
     }
