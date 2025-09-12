@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Interfaces;
+using Infrastructure.Managers;
 using Infrastructure.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -9,6 +10,7 @@ string filePath = @"c:\data\products.json";
 var builder = Host.CreateApplicationBuilder();
 builder.Services.AddSingleton<IFileService>(_ => new JsonFileService(filePath, new JsonSerializerOptions { WriteIndented = true }));
 builder.Services.AddSingleton<IProductService, ProductService>();
+builder.Services.AddSingleton<IProductManager, ProductManager>();
 
 
 builder.Build();
