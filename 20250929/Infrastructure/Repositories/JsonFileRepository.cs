@@ -1,13 +1,14 @@
 ﻿using Infrastructure.Models;
 using System.Text.Json;
+using System.Threading;
 
 namespace Infrastructure.Repositories;
 
 
 public interface IJsonFileRepository
 {
-    Task WriteAsync(IEnumerable<Product> products, CancellationToken cancellationToken = default);
-    ValueTask<IReadOnlyList<Product>> ReadAsync(CancellationToken cancellationToken = default);
+    Task Write_Async(IEnumerable<Product> products, CancellationToken cancellationToken_s = default);
+    ValueTask<IReadOnlyList<Product>> Read_Async(CancellationToken cancellationToken_s = default);
 }
 
 
@@ -23,11 +24,11 @@ public class JsonFileRepository : IJsonFileRepository
 
     public JsonFileRepository(string fileName = "data.json")
     {
-        var baseDirectory = AppContext.BaseDirectory;
-        var dataDirectory = Path.Combine(baseDirectory, "Data");
-        _filePath = Path.Combine(dataDirectory, fileName);
+        var base_Directory = AppContext.BaseDirectory;
+        var data_Directory = Path.Combine(base_Directory, "Data");
+        _filePath = Path.Combine(data_Directory, fileName);
 
-        EnsureInitialized(dataDirectory, _filePath);
+        EnsureInitialized(data_Directory, _filePath);
     }
 
     public static void EnsureInitialized(string dataDirectory, string filePath)
@@ -39,18 +40,18 @@ public class JsonFileRepository : IJsonFileRepository
             File.WriteAllText(filePath, "[]");
     }
 
-    public async Task WriteAsync(IEnumerable<Product> products, CancellationToken cancellationToken = default)
+    public async Task Write_Async(IEnumerable<Product> products, CancellationToken cancellationToken_s = default)
     {
         await using var stream = File.Create(_filePath);
-        await JsonSerializer.SerializeAsync(stream, products, _jsonOptions, cancellationToken);
+        await JsonSerializer.SerializeAsync(stream, products, _jsonOptions, cancellationToken_s);
     }
 
-    public async ValueTask<IReadOnlyList<Product>> ReadAsync(CancellationToken cancellationToken = default)
+    public async ValueTask<IReadOnlyList<Product>> Read_Async(CancellationToken cancellationToken_s = default)
     {
         try
         {
             await using var stream = File.OpenRead(_filePath);
-            var products = await JsonSerializer.DeserializeAsync<List<Product>>(stream, _jsonOptions, cancellationToken);
+            var products = await JsonSerializer.DeserializeAsync<List<Product>>(stream, _jsonOptions, cancellationToken_s);
             return products ?? [];
         }
         catch

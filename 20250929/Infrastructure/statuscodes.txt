@@ -1,0 +1,24 @@
+200-serien | Success
+-----------------------------------------------------------------------------
+200		OK				Allt gick bra, här har du resultatet.
+201		CREATED			Allt gick bra, resursen har skapats.
+204		NO CONTENT		Allt gick bra (vanligt att använda 200 istället).
+
+300-serien | Redirect
+-----------------------------------------------------------------------------
+Hanteras mest av IT-tekniker och när man arbetar med servrar.
+
+400-serien | User Error
+-----------------------------------------------------------------------------
+400		BAD REQUEST		Felaktig data har inkommit. Alla fält inte ifyllda.	
+401		UNAUTHORIZED	Felaktig inlogging, fel anv/e-post eller lösenord.
+403		FORBIDDEN		Inloggad men ingen rättighet.
+404		NOT FOUND		När en resurs inte hittas
+409		CONFLICT		När en resurs redan existerar exempelvis
+
+500-serien | Server Error (mer för IT-tekniker/Nätverkstekniker/Syst.Admin)
+-----------------------------------------------------------------------------
+500		INTERNAL SERVER ERROR		Generellt felmeddelande.
+501		NOT IMPLEMENTED				Funktionalitet är inte skapad
+502		BAD GATEWAY					Kommunikationsproblem (nätverksbaserat)
+503		SERVICE UNAVAILABLE			Tjänsten ligger nere/underhålls

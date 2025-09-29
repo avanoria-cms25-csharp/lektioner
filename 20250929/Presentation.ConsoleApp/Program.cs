@@ -1,2 +1,19 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using Infrastructure.Repositories;
+using Infrastructure.Services;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Presentation.ConsoleApp;
+
+IHost host = Host.CreateDefaultBuilder()
+    .ConfigureServices(services => 
+    {
+        services.AddSingleton<IJsonFileRepository>(new JsonFileRepository("products.json"));
+        services.AddSingleton<IProductService, ProductService>();
+
+        services.AddSingleton<MainDialog>();
+    })
+    .Build();
+
+var main = host.Services.GetRequiredService<MainDialog>();
+main.Show();
+
