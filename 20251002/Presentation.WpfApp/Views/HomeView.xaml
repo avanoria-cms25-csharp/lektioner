@@ -4,22 +4,25 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Presentation.WpfApp.Views"
+             xmlns:viewmodels="clr-namespace:Presentation.WpfApp.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:HomeViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="400" 
              d:DesignWidth="300"
              Background="SlateGray"
             >
+
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Style="{StaticResource icon-fan}" FontSize="72" />
+        <TextBlock Grid.Row="0" Style="{StaticResource icon-fan}" FontSize="82" />
 
         <StackPanel Grid.Row="1">
-            <Slider />
-            <Button Style="{StaticResource btn-primary}" Content="Turn On" />
+            <Slider Margin="30 20" Minimum="0.5" Maximum="1.5" Value="{Binding SpeedRatio}" TickFrequency="0.1" IsSnapToTickEnabled="True"  />
+            <Button Command="{Binding ToggleFanStateCommand}"  Content="{Binding ButtonText, FallbackValue=Turn On}" Style="{StaticResource btn-primary}" />
         </StackPanel>
         
     </Grid>
