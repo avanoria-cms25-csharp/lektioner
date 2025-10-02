@@ -10,16 +10,40 @@
         d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-        <ContentControl Content="{Binding CurrentViewModel}">
-            <ContentControl.Resources>
-                <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
-                    <views:HomeView />
-                </DataTemplate>
-            </ContentControl.Resources> 
-        </ContentControl>
         
-    </Grid>
+        Background="SlateGray"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        
+        Title="{Binding Title, FallbackValue=FAN}" Height="450" Width="300">
+
+
+    <Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="TitleBar" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Foreground="White" Padding="10" Grid.Column="0" Text="{Binding Title, FallbackValue=FAN}" />
+                <Button Grid.Column="1" x:Name="BtnCloseApp" Click="BtnCloseApp_Click"   />
+            </Grid>
+            
+            <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}">
+                <ContentControl.Resources>
+                    <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
+                        <views:HomeView />
+                    </DataTemplate>
+                </ContentControl.Resources>
+            </ContentControl>
+
+        </Grid>
+    </Border>
+    
 </Window>
