@@ -32,7 +32,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Foreground="White" Padding="10" Grid.Column="0" Text="{Binding Title, FallbackValue=FAN}" />
-                <Button Grid.Column="1" x:Name="BtnCloseApp" Click="BtnCloseApp_Click"   />
+                <Button Style="{StaticResource btn-close}" Grid.Column="1" x:Name="BtnCloseApp" Click="BtnCloseApp_Click"   />
             </Grid>
             
             <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}">
