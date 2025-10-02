@@ -2,8 +2,6 @@
 using Microsoft.Extensions.Hosting;
 using Presentation.WpfApp.ViewModels;
 using Presentation.WpfApp.Views;
-using System.Configuration;
-using System.Data;
 using System.Windows;
 
 namespace Presentation.WpfApp;
@@ -24,7 +22,6 @@ public partial class App : Application
 
                 services.AddSingleton<HomeViewModel>();
                 services.AddSingleton<HomeView>();
-            
             })
             .Build();
     }
