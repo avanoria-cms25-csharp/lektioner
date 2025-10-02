@@ -9,6 +9,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resources/Styling/Global.xaml" />
                 <ResourceDictionary Source="/Resources/Styling/Buttons.xaml" />
+                <ResourceDictionary Source="/Resources/Styling/Icons.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
         

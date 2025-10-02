@@ -7,9 +7,9 @@
         <Setter Property="Background" Value="DarkSlateGray" />
         <Setter Property="Margin" Value="10" />
         <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Height" Value="25" />
         <Setter Property="Width" Value="25" />
-        <Setter Property="Content" Value="X" />
 
         <Setter Property="Template">
             <Setter.Value>
@@ -33,11 +33,36 @@
                             <Setter Property="Background" Value="#131F1E" />
                         </Trigger>
                     </ControlTemplate.Triggers>
-                    
+
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
 
+    <Style x:Key="btn-primary" TargetType="Button">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Background" Value="DarkSlateGray" />
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border>
+                        <ContentPresenter />
+                    </Border>
+                    
+                    
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#213837" />
+                            <Setter Property="Cursor" Value="Hand" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="#131F1E" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
 </ResourceDictionary>

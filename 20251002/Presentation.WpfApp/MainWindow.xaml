@@ -11,27 +11,29 @@
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
         
+        Height="450" 
+        Width="300"
         Background="SlateGray"
         WindowStyle="None"
         ResizeMode="NoResize"
         
-        Title="{Binding Title, FallbackValue=FAN}" Height="450" Width="300">
+        Title="{Binding Title, FallbackValue=FAN}">
 
 
     <Border>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
+                <RowDefinition Height="50" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Grid x:Name="TitleBar" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown" Grid.Row="0">
+            <Grid x:Name="TitleBar" VerticalAlignment="Center" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown" Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Foreground="White" Padding="10" Grid.Column="0" Text="{Binding Title, FallbackValue=FAN}" />
+                <TextBlock VerticalAlignment="Center" Foreground="White" Padding="10" Grid.Column="0" Text="{Binding Title, FallbackValue=FAN}" />
                 <Button Style="{StaticResource btn-close}" Grid.Column="1" x:Name="BtnCloseApp" Click="BtnCloseApp_Click"   />
             </Grid>
             

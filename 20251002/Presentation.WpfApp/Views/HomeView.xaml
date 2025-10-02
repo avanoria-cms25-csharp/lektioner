@@ -5,8 +5,22 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Presentation.WpfApp.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock Text="Home" />
+             d:DesignHeight="400" 
+             d:DesignWidth="300"
+             Background="SlateGray"
+            >
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Style="{StaticResource icon-fan}" FontSize="72" />
+
+        <StackPanel Grid.Row="1">
+            <Slider />
+            <Button Style="{StaticResource btn-primary}" Content="Turn On" />
+        </StackPanel>
+        
     </Grid>
 </UserControl>
