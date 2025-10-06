@@ -24,17 +24,17 @@
         <StackPanel Grid.Row="1">
             <StackPanel Margin="0 0 0 10">
                 <Label Content="First Name" />
-                <TextBox />
+                <TextBox Text="{Binding UserData.FirstName}" />
             </StackPanel>
 
             <StackPanel Margin="0 0 0 10">
                 <Label Content="Last Name" />
-                <TextBox />
+                <TextBox Text="{Binding UserData.LastName}" />
             </StackPanel>
 
             <StackPanel Margin="0 0 0 10">
                 <Label Content="E-mail" />
-                <TextBox />
+                <TextBox Text="{Binding UserData.Email}" />
             </StackPanel>
         </StackPanel>
 
