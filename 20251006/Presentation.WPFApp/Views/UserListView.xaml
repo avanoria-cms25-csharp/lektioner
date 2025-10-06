@@ -23,7 +23,7 @@
             <Button Command="{Binding GoToUserAddViewCommand}" Content="NEW USER" />
         </StackPanel>
 
-        <ListView Grid.Row="1" ItemsSource="{Binding Users}">
+        <ListView Grid.Row="1" ItemsSource="{Binding Users}" HorizontalContentAlignment="Stretch">
             <ListView.ItemTemplate>
                 <DataTemplate DataType="{x:Type models:User}">
                     <Grid>
@@ -41,8 +41,15 @@
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" Orientation="Horizontal">
-                            <Button Content="Edit" />
-                            <Button Content="Delete" />
+                            <Button Content="Edit"
+                                    CommandParameter="{Binding .}"
+                                    Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                    />
+                            
+                            <Button Content="Delete" 
+                                    CommandParameter="{Binding Id}" 
+                                    Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                                     />
                         </StackPanel>
                         
 

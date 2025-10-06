@@ -26,6 +26,13 @@ public partial class UserListViewModel : ObservableObject
     [ObservableProperty]
     private ObservableCollection<User> _users = [];
 
+    public void PopulateUserList()
+    {
+        var currentUsers = _userService.GetUsers();
+        Users = new ObservableCollection<User>(currentUsers);
+    }
+
+
     [RelayCommand]
     private void GoToUserAddView()
     {
@@ -34,18 +41,21 @@ public partial class UserListViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private void Delete(User user)
+    private void Edit(User user)
     {
-        var filtered = Users.Where(x =>  x.Id != user.Id).ToList();
-        Users = new ObservableCollection<User>(filtered);
+        var mmv = _serviceProvider.GetRequiredService<MainViewModel>();
+        mmv.CurrentViewModel = _serviceProvider.GetRequiredService<UserEditViewModel>();
     }
 
-
-
-
-    public void PopulateUserList()
+    [RelayCommand]
+    private void Delete(int userId)
     {
-        var currentUsers = _userService.GetUsers();
-        Users = new ObservableCollection<User>(currentUsers);
+        _userService.DeleteUserById(userId);
+        PopulateUserList() ;
     }
+
+    
+
+
+
 }

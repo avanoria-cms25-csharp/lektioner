@@ -16,4 +16,17 @@ public class UserService : IUserService
     {
         return _userList;
     }
+
+    public void DeleteUserById(int id)
+    {
+        var user = _userList.FirstOrDefault(usr => usr.Id == id);
+
+        if (user is not null)
+            _userList.Remove(user);
+    }
+
+    public void DeleteUser(User user)
+    {
+        _userList.Remove(user);
+    }
 }
