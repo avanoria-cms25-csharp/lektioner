@@ -12,7 +12,10 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
 
-        <TextBlock Text="{Binding Title}" />
+        <StackPanel>
+            <TextBlock Text="{Binding Title}" />
+            <Button Command="{Binding GoToUserAddViewCommand}" Content="NEW USER" />
+        </StackPanel>
 
     </Grid>
 </UserControl>
