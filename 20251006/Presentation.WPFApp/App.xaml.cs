@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Infrastructure.Services;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Presentation.WPFApp.ViewModels;
 using Presentation.WPFApp.Views;
@@ -15,6 +16,8 @@ public partial class App : Application
         _host = Host.CreateDefaultBuilder()
             .ConfigureServices(services =>
             {
+                services.AddSingleton<IUserService, UserService>();
+
                 services.AddSingleton<MainViewModel>();
                 services.AddSingleton<MainWindow>();
 
