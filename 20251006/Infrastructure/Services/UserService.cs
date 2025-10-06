@@ -1,10 +1,12 @@
 ﻿using Infrastructure.Models;
+using Infrastructure.Repositories;
 
 namespace Infrastructure.Services;
 
-public class UserService : IUserService
+public class UserService(IFileRepository fileRepository) : IUserService
 {
     private List<User> _userList = [];
+    private readonly IFileRepository _fileRepository = fileRepository;
 
     public bool AddUser(User user)
     {
@@ -14,7 +16,9 @@ public class UserService : IUserService
         {
             user.Id = _userList.Count + 1;
             _userList.Add(user);
-            return true;
+
+            var result = _fileRepository.Write(_userList);
+            return result;
         }
 
         return false;
@@ -22,11 +26,15 @@ public class UserService : IUserService
 
     public IEnumerable<User> GetUsers()
     {
+        _userList = [.. _fileRepository.Read()];
+
         return _userList;
     }
 
     public User? GetUserById(int id)
     {
+        _userList = [.. _fileRepository.Read()];
+
         var user = _userList.FirstOrDefault(u => u.Id == id);
         return user;
     }
@@ -50,7 +58,8 @@ public class UserService : IUserService
                 existing_user.Email = user.Email;
             }
 
-            return true;
+            var result = _fileRepository.Write(_userList);
+            return result;
         }
 
         return false;
@@ -64,7 +73,9 @@ public class UserService : IUserService
         if (existing_user is not null)
         {
             _userList.Remove(existing_user);
-            return true;
+
+            var result = _fileRepository.Write(_userList);
+            return result;
         }
 
         return false;
@@ -74,6 +85,8 @@ public class UserService : IUserService
     public bool DeleteUser(User user)
     {
         _userList.Remove(user);
-        return true;
+
+        var result = _fileRepository.Write(_userList);
+        return result;
     }
 }
