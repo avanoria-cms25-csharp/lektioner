@@ -33,6 +33,15 @@ public partial class UserListViewModel : ObservableObject
         mmv.CurrentViewModel = _serviceProvider.GetRequiredService<UserAddViewModel>();
     }
 
+    [RelayCommand]
+    private void Delete(User user)
+    {
+        var filtered = Users.Where(x =>  x.Id != user.Id).ToList();
+        Users = new ObservableCollection<User>(filtered);
+    }
+
+
+
 
     public void PopulateUserList()
     {

@@ -27,17 +27,27 @@
             <ListView.ItemTemplate>
                 <DataTemplate DataType="{x:Type models:User}">
                     <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
 
+                        <StackPanel Grid.Column="0">
+                            <TextBlock>
+                                <Run Text="{Binding FirstName}" />
+                                <Run Text="{Binding LastName}" />
+                            </TextBlock>
+                            <TextBlock Text="{Binding Email}" />
+                        </StackPanel>
 
-                        <TextBlock Grid.Row="0">
-                            <Run Text="{Binding FirstName}" />
-                            <Run Text="{Binding LastName}" />
-                        </TextBlock>
-                        <TextBlock Grid.Row="1" Text="{Binding Email}" />
+                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                            <Button Content="Edit" />
+                            <Button Content="Delete" />
+                        </StackPanel>
+                        
+
+                        
+                        
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
