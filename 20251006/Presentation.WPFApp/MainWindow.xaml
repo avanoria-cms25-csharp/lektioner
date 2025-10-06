@@ -4,9 +4,29 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation.WPFApp"
+        
+        xmlns:viewmodels="clr-namespace:Presentation.WPFApp.ViewModels"
+        xmlns:views="clr-namespace:Presentation.WPFApp.Views"
+        d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
+        
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
 
+        <ContentControl Content="{Binding CurrentViewModel}">
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type viewmodels:UserListViewModel}">
+                    <views:UserListView />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewmodels:UserAddViewModel}">
+                    <views:UserAddView />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewmodels:UserEditViewModel}">
+                    <views:UserEditView />
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
+        
+        
     </Grid>
 </Window>
