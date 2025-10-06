@@ -1,4 +1,5 @@
-﻿using Infrastructure.Services;
+﻿using Infrastructure.Repositories;
+using Infrastructure.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Presentation.WPFApp.ViewModels;
@@ -16,6 +17,7 @@ public partial class App : Application
         _host = Host.CreateDefaultBuilder()
             .ConfigureServices(services =>
             {
+                services.AddScoped<IFileRepository, FileRepository>();
                 services.AddScoped<IUserService, UserService>();
 
                 services.AddSingleton<MainViewModel>();
