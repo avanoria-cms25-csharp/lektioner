@@ -16,19 +16,19 @@ public partial class App : Application
         _host = Host.CreateDefaultBuilder()
             .ConfigureServices(services =>
             {
-                services.AddSingleton<IUserService, UserService>();
+                services.AddScoped<IUserService, UserService>();
 
                 services.AddSingleton<MainViewModel>();
                 services.AddSingleton<MainWindow>();
 
-                services.AddTransient<UserListViewModel>();
-                services.AddTransient<UserListView>();
+                services.AddScoped<UserListViewModel>();
+                services.AddScoped<UserListView>();
 
                 services.AddTransient<UserAddViewModel>();
                 services.AddTransient<UserAddView>();
 
-                services.AddTransient<UserEditViewModel>();
-                services.AddTransient<UserEditView>();
+                services.AddScoped<UserEditViewModel>();
+                services.AddScoped<UserEditView>();
             })
             .Build();
     }

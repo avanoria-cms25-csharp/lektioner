@@ -43,6 +43,9 @@ public partial class UserListViewModel : ObservableObject
     [RelayCommand]
     private void Edit(User user)
     {
+        var evm = _serviceProvider.GetRequiredService<UserEditViewModel>();
+        evm.SetUser(user);
+
         var mmv = _serviceProvider.GetRequiredService<MainViewModel>();
         mmv.CurrentViewModel = _serviceProvider.GetRequiredService<UserEditViewModel>();
     }

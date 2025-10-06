@@ -15,6 +15,7 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0"  Margin="0 0 0 20">
@@ -38,7 +39,9 @@
             </StackPanel>
         </StackPanel>
 
-        <StackPanel  Grid.Row="2">
+        <TextBlock Grid.Row="2" Text="{Binding ErrorMessage}" Margin="10" />
+
+        <StackPanel  Grid.Row="3">
             <Button Command="{Binding SaveCommand}" Content="Save" Margin="0 0 0 10" />
             <Button Command="{Binding CancelCommand}" Content="Cancel" />
         </StackPanel>

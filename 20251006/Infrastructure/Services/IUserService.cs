@@ -4,9 +4,11 @@ namespace Infrastructure.Services
 {
     public interface IUserService
     {
-        void AddUser(User user);
-        void DeleteUser(User user);
-        void DeleteUserById(int id);
+        bool AddUser(User user);
+        bool DeleteUser(User user);
+        bool DeleteUserById(int id);
+        User? GetUserById(int id);
         IEnumerable<User> GetUsers();
+        bool UpdateUser(User user);
     }
 }

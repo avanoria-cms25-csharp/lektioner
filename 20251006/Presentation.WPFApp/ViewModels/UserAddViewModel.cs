@@ -17,20 +17,37 @@ public partial class UserAddViewModel(IServiceProvider serviceProvider, IUserSer
     [ObservableProperty]
     private User _userData = new();
 
+    [ObservableProperty]
+    private string _errorMessage = "";
+
     [RelayCommand]
     private void Save()
     {
         if (UserData is not null)
-            _userService.AddUser(UserData);
+        {
+            var successeded = _userService.AddUser(UserData);
+            if (!successeded)
+            {
+                ErrorMessage = "Unable to save user.";
+                return;
+            }
+        }
+
+        var lvm = _serviceProvider.GetRequiredService<UserListViewModel>();
+        lvm.PopulateUserList();
 
         var mmv = _serviceProvider.GetRequiredService<MainViewModel>();
-        mmv.CurrentViewModel = _serviceProvider.GetRequiredService<UserListViewModel>();
+        mmv.CurrentViewModel = lvm;
+
     }
 
     [RelayCommand]
     private void Cancel()
     {
+        var lvm = _serviceProvider.GetRequiredService<UserListViewModel>();
+        lvm.PopulateUserList();
+
         var mmv = _serviceProvider.GetRequiredService<MainViewModel>();
-        mmv.CurrentViewModel = _serviceProvider.GetRequiredService<UserListViewModel>();
+        mmv.CurrentViewModel = lvm;
     }
 }
