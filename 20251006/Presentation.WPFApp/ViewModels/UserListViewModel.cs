@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Infrastructure.Models;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.ObjectModel;
 
 namespace Presentation.WPFApp.ViewModels;
 
@@ -10,6 +12,9 @@ public partial class UserListViewModel(IServiceProvider serviceProvider) : Obser
     
     [ObservableProperty]
     private string _title = "USER LIST";
+
+    [ObservableProperty]
+    private ObservableCollection<User> _users = [];
 
     [RelayCommand]
     private void GoToUserAddView()

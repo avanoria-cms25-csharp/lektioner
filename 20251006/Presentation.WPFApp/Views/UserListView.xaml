@@ -11,11 +11,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-
-        <StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        
+        <StackPanel Grid.Row="0">
             <TextBlock Text="{Binding Title}" />
             <Button Command="{Binding GoToUserAddViewCommand}" Content="NEW USER" />
         </StackPanel>
 
+        <ListView Grid.Row="1" ItemsSource="{Binding Users}">
+            
+        </ListView>
+        
     </Grid>
 </UserControl>
