@@ -1,7 +1,9 @@
-﻿namespace Infrastructure.Repositories;
+﻿using Infrastructure.Models;
+
+namespace Infrastructure.Repositories;
 
 public interface IFileRepository
 {
-    bool Write(string content);
-    string Read();
+    bool Write(List<User> users);
+    IEnumerable<User> Read();
 }
