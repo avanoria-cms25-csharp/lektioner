@@ -10,6 +10,12 @@ public class UserService(IFileRepository fileRepository) : IUserService
 
     public bool AddUser(User user)
     {
+        if (user is null || 
+            string.IsNullOrEmpty(user!.FirstName) ||
+            string.IsNullOrEmpty(user!.LastName) ||
+            string.IsNullOrEmpty(user!.Email))
+            return false;
+
         var user_exists = _userList.Any(usr => usr.Email == user.Email);
 
         if (!user_exists)
