@@ -2,7 +2,7 @@
 
 namespace Presentation.WPFApp.ViewModels;
 
-public partial class AddViewModel(IServiceProvider serviceProvider) : ObservableObject
+public partial class UserAddViewModel(IServiceProvider serviceProvider) : ObservableObject
 {
     private readonly IServiceProvider _serviceProvider = serviceProvider;
     

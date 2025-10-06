@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Presentation.WPFApp.ViewModels;
+using Presentation.WPFApp.Views;
 using System.Windows;
 
 namespace Presentation.WPFApp;
@@ -17,9 +18,14 @@ public partial class App : Application
                 services.AddSingleton<MainViewModel>();
                 services.AddSingleton<MainWindow>();
 
-                services.AddTransient<ListViewModel>();
-                services.AddTransient<AddViewModel>();
-                services.AddTransient<EditViewModel>();
+                services.AddTransient<UserListViewModel>();
+                services.AddTransient<UserListView>();
+
+                services.AddTransient<UserAddViewModel>();
+                services.AddTransient<UserAddView>();
+
+                services.AddTransient<UserEditViewModel>();
+                services.AddTransient<UserEditView>();
             })
             .Build();
     }
@@ -30,7 +36,7 @@ public partial class App : Application
         base.OnStartup(e);
 
         var mainViewModel = _host!.Services.GetRequiredService<MainViewModel>();
-        mainViewModel.CurrentViewModel = _host!.Services.GetRequiredService<ListViewModel>();
+        mainViewModel.CurrentViewModel = _host!.Services.GetRequiredService<UserListViewModel>();
 
         var window = _host!.Services.GetRequiredService<MainWindow>();
         window.DataContext = mainViewModel;
